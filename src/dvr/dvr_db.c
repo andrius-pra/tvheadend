@@ -1488,7 +1488,7 @@ static int _dvr_duplicate_epnum(dvr_entry_t *de, dvr_entry_t *de2, void **aux)
     return de->de_epnum.e_num == de2->de_epnum.e_num;
   if (de->de_epnum.text && de2->de_epnum.text)
     return strcmp(de->de_epnum.text, de2->de_epnum.text) == 0;
-  return 0;
+  return !lang_str_compare(de->de_title, de2->de_title);
 }
 
 static int _dvr_duplicate_title(dvr_entry_t *de, dvr_entry_t *de2, void **aux)
@@ -1750,8 +1750,8 @@ static dvr_entry_t *_dvr_duplicate_event(dvr_entry_t *de)
       break;
     case DVR_AUTOREC_RECORD_DIFFERENT_EPISODE_NUMBER:
     case DVR_AUTOREC_LRECORD_DIFFERENT_EPISODE_NUMBER:
-      if (de->de_epnum.e_num == 0 && de->de_epnum.text == NULL)
-        return NULL;
+      //if (de->de_epnum.e_num == 0 && de->de_epnum.text == NULL)
+      //  return NULL;
       break;
     case DVR_AUTOREC_RECORD_DIFFERENT_SUBTITLE:
     case DVR_AUTOREC_LRECORD_DIFFERENT_SUBTITLE:

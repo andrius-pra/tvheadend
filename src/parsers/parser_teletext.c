@@ -1,6 +1,6 @@
 /*
  *  Teletext parsing functions
- *  Copyright (C) 2007 Andreas Öman
+ *  Copyright (C) 2007 Andreas ï¿½man
  *  Copyright (C) 2014 Jaroslav Kysela
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -124,16 +124,16 @@ static const uint8_t hamtable[] = {
 #define SUBSET_CZECH_SLOVAK    1  /* Cesky / Slovencina */
 #define SUBSET_ENGLISH         2  /* English */
 #define SUBSET_ESTONIAN        3  /* Eesti */
-#define SUBSET_FRENCH          4  /* Français */
+#define SUBSET_FRENCH          4  /* Franï¿½ais */
 #define SUBSET_GERMAN          5  /* German / Deutch */
 #define SUBSET_ITALIAN         6  /* Italiano */
 #define SUBSET_LETT_LITH       7  /* Lettish / Lietuviskai */
 #define SUBSET_POLISH          8  /* Polski */
-#define SUBSET_PORTUG_SPANISH  9  /* Português / Español */
-#define SUBSET_RUMANIAN        10 /* Româna */
+#define SUBSET_PORTUG_SPANISH  9  /* Portuguï¿½s / Espaï¿½ol */
+#define SUBSET_RUMANIAN        10 /* Romï¿½na */
 #define SUBSET_SERB_CRO_SLO    11 /* Srpski / Hrvatski / Slovenscina */
 #define SUBSET_SWE_FIN_HUN     12 /* Svenska / Suomi / Magyar */
-#define SUBSET_TURKISH         13 /* Türkçe */
+#define SUBSET_TURKISH         13 /* Tï¿½rkï¿½e */
 #define SUBSET_LAST            SUBSET_TURKISH
 
 #define SUBSET_CHARMAP_COUNT   13
@@ -698,6 +698,10 @@ extract_subtitle(parser_t *t, parser_es_t *st, tt_mag_t *ttm, int64_t pts)
   if ((cset = get_cset((ttm->ttm_charset[0] & ~7) + ttm->ttm_national)) == NULL)
     if ((cset = get_cset(ttm->ttm_charset[0])) == NULL)
       cset = char_table[0]; /* fallback */
+
+  if(ttm->ttm_charset[0] == 0){
+    cset = char_table[35];
+  }
 
   for (i = 0; i < 23; i++) {
     is_font_tag_open = 0;
